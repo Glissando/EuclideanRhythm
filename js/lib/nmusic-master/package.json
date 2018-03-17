@@ -1,0 +1,47 @@
+{
+  "name": "nmusic",
+  "version": "0.6.1",
+  "main": "./lib/nmusic.js",
+  "description": "a JavaScript music library for easy programmatic music composition",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "eslint lib test && tape test/**/*.test.js | faucet",
+    "docs": "jsdoc2md lib/**/*.js > api.md",
+    "preversion": "npm test",
+    "postversion": "git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrleszcz/nmusic.git"
+  },
+  "keywords": [
+    "music theory",
+    "music",
+    "scales",
+    "scale",
+    "note",
+    "interval",
+    "classical",
+    "music library"
+  ],
+  "author": {
+    "name": "John Leszczynski",
+    "email": "jrleszczynski@gmail.com",
+    "url": "http://johnleszczynski.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrleszcz/nmusic/issues"
+  },
+  "homepage": "https://github.com/jrleszcz/nmusic#readme",
+  "devDependencies": {
+    "eslint": "^3.14.0",
+    "faucet": "0.0.1",
+    "jsdoc-to-markdown": "^1.2.0",
+    "tape": "^4.2.2"
+  },
+  "tonicExampleFile": "example.js"
+}
