@@ -2,6 +2,9 @@ BasicApp.Input = function(app){
 	this.binary = [];
 	this.tempo = 120;
 	this.binaryText = null;
+	this.maxLength = 16;
+	this.length = 0;
+	this.generate = null;
 };
 
 BasicApp.Input.prototype = {
@@ -10,15 +13,13 @@ BasicApp.Input.prototype = {
 		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
 		this.binaryText = this.add.text(20,640, '', style);
 
+		this.generate = game.add.button(20, game.screen.height - 50, 'generate', this.generate, this);
+
 		this.addKeys();
 		this.addPointers();
 	},
 
 	update: function(){
-			var pos = this.latticePosition(this.input.activePointer.x, this.input.activePointer.y);
-			this.tooltip.setText("x: " + pos.x + " y: " + pos.y);
-			graphics.width = this.game.width;
-			graphics.height = this.game.height;
 	},
 
 	render: function(){
@@ -26,19 +27,15 @@ BasicApp.Input.prototype = {
 	},
 
 	shutdown: function(){
+		this.length = 0;
+		this.binaryText.setText('');
+		this.binary = [];
 		this.clearEvents();
 	},
 
 	clearEvents: function(){
 		this.input.mousePointer.rightButton.onDown.removeAll();
 		this.input.mousePointer.leftButton.onDown.removeAll();
-
-		this.run.onDown.removeAll();
-		this.p.onDown.removeAll();
-		this.h.onDown.removeAll();
-		this.e.onDown.removeAll();
-		this.r.onDown.removeAll();
-		this.esc.onDown.removeAll();
 	},
 
 	addPointers: function(){
@@ -69,14 +66,30 @@ BasicApp.Input.prototype = {
 	},
 
 	one: function(){
-		this.binaryText.text += "1";
+		if(this.length < this.maxLength){
+			this.binaryText.text += "1";
+			this.binary.push(1);
+			this.length++;
+		}
 	},
 
 	zero: function(){
-		this.binaryText.text += "0";
+		if(this.length < this.maxLength){
+			this.binaryText.text += "0";
+			this.binary.push(0);
+			this.length++;
+		}
 	},
 
 	delete: function(){
-		this.binaryText.text = this.binaryText.test.substring(0,this.binaryText.text.length-1);
+		if(length>0){
+			this.binaryText.text = this.binaryText.test.substring(0,this.binaryText.text.length-1);
+			this.binary.pop();
+			this.length--;
+		}
+	},
+
+	generate: function(){
+		this.state.start("Info", false, new Rythm(this.binary));
 	}
 };
