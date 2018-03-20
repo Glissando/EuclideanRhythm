@@ -1,19 +1,24 @@
 BasicApp.Input = function(app){
 	this.binary = [];
-	this.tempo = 120;
 	this.binaryText = null;
 	this.maxLength = 16;
 	this.length = 0;
 	this.generate = null;
+	//keys
+	this.one = null;
+	this.oneNumpad = null;
+	this.zero = null;
+	this.zeroNumpad = null;
+	this.del = null;
 };
 
 BasicApp.Input.prototype = {
 
 	create: function(){
 		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
-		this.binaryText = this.add.text(20,640, '', style);
+		this.binaryText = this.add.text(200,100, '', style);
 
-		this.generate = game.add.button(20, game.screen.height - 50, 'generate', this.generate, this);
+		this.generate = game.add.button(300,640, 'generate', this.generate, this);
 
 		this.addKeys();
 		this.addPointers();
@@ -36,6 +41,8 @@ BasicApp.Input.prototype = {
 	clearEvents: function(){
 		this.input.mousePointer.rightButton.onDown.removeAll();
 		this.input.mousePointer.leftButton.onDown.removeAll();
+
+		this.input.keyboard.reset();
 	},
 
 	addPointers: function(){
@@ -67,7 +74,7 @@ BasicApp.Input.prototype = {
 
 	one: function(){
 		if(this.length < this.maxLength){
-			this.binaryText.text += "1";
+			this.binaryText.setText(this.binaryText.text+"1");
 			this.binary.push(1);
 			this.length++;
 		}
@@ -75,7 +82,7 @@ BasicApp.Input.prototype = {
 
 	zero: function(){
 		if(this.length < this.maxLength){
-			this.binaryText.text += "0";
+			this.binaryText.setText(this.binaryText.text+"0");
 			this.binary.push(0);
 			this.length++;
 		}
@@ -83,13 +90,13 @@ BasicApp.Input.prototype = {
 
 	delete: function(){
 		if(length>0){
-			this.binaryText.text = this.binaryText.test.substring(0,this.binaryText.text.length-1);
+			this.binaryText.setText(this.binaryText.text.substring(0,this.binaryText.text.length-1));
 			this.binary.pop();
 			this.length--;
 		}
 	},
 
 	generate: function(){
-		this.state.start("Info", false, new Rythm(this.binary));
+		this.state.start("Info", false, false, new Rythm(this.binary));
 	}
 };

@@ -1,4 +1,7 @@
 BasicApp.Info = function(app){
+	//play settings
+	this.tempo = 120;
+	this.instrument = "piano";
 	//text
 	this.rythm = null; //The rythm object
 	this.interval = null; //Text object for vector interval notation e.g. (3,3,2)
@@ -18,11 +21,11 @@ BasicApp.Info.prototype = {
 		this.rythm = rythm;
 
 		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
-		this.interval = this.add.text(30,640, rythm.interval(), style);
-		this.binary = this.add.text(30,640, rythm.text(), style);
-		this.music = this.add.text(40,320, rythm.music(), style);
+		this.interval = this.add.text(200,400, rythm.interval(), style);
+		this.binary = this.add.text(200,600, rythm.text(), style);
+		this.music = this.add.text(700,600, rythm.music(), style);
 
-		this.back = game.add.button(20, game.screen.height - 50, 'back', this.back, this);
+		this.back = game.add.button(20,600, 'back', this.back, this);
 
 		this.drawPolygon(rythm, this.center);
 		this.addKeys();
@@ -38,6 +41,19 @@ BasicApp.Info.prototype = {
 	},
 
 	shutdown: function(){
+		graphics.clear();
+
+		this.back.destroy();
+		this.back = null;
+
+		this.interval.destroy();
+		this.interval = null;
+
+		this.binary.destroy();
+		this.binary = null;
+
+		this.music.destroy();
+		this.music = null;
 
 		this.clearEvents();
 	},
