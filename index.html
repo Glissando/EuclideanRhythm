@@ -24,8 +24,8 @@
 
 				app = new Phaser.Game(1280, 720, Phaser.AUTO, 'gameContainer');
 				app.state.add('Boot', BasicApp.Boot);
-				app.state.add('Input', BasicApp.Lemonade);
-				app.state.add('Info', BasicApp.FakeCoin);
+				app.state.add('Input', BasicApp.Input);
+				app.state.add('Info', BasicApp.Info);
 				app.state.start('Boot');
 			};
 		</script>
