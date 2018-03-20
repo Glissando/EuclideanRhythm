@@ -59,6 +59,7 @@ function Rythm(m,k){
     this.build(level);
     var i = pattern.indexOf(1);
     pattern = pattern.slice(i).concat(pattern.slice(0,i));
+    this.rythm = pattern;
     return pattern;
   };
 
@@ -104,7 +105,7 @@ function Rythm(m,k){
   //Returns the rythm in musicology syntax e.g.
   //[10010010] = [x..x..x.]
   this.music = function(){
-    var str = "";
+    var str = "[";
 
     for(var i=0;i<this.rythm.length;i++){
         if(this.rythm[i]==0){
@@ -115,7 +116,7 @@ function Rythm(m,k){
         }
     }
 
-    return str;
+    return str+"]";
   };
 
   //Returns the coordinates for the rythms polygon representation as described in chapter 3
@@ -178,21 +179,21 @@ function Rythm(m,k){
 
   //Returns the string representation of the Euclidean String
   this.interval = function(){
-      var str = "";
+      var str = "(";
       for(var i=0;i<this.string.length;i++){
         str += this.string[i];
       }
 
-      return str;
+      return str+")";
   };
 
   this.text = function(){
-    var str = "";
+    var str = "[";
     for(var i=0;i<this.string.length;i++){
       str += this.rythm[i];
     }
 
-    return str;
+    return str+"]";
   };
 
   //Checks if two rythms belong to the same, which means there acyclic permutations
