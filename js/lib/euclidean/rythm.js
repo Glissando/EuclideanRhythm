@@ -56,22 +56,22 @@ function Rythm(m,k){
     }
 
     counts.push(divisor);
-    this.build(level);
+    this.build(level,counts,pattern);
     var i = pattern.indexOf(1);
     pattern = pattern.slice(i).concat(pattern.slice(0,i));
     this.rythm = pattern;
     return pattern;
   };
 
-  this.build = function(level){
+  this.build = function(level, counts, pattern){
     if(level==-1){
-      this.rythm.push(0);
+      pattern.push(0);
     }
     else if(level==-2){
-      this.rythm.push(1);
+      pattern.push(1);
     }
     else{
-      for(var i=0;i<counts[level]){
+      for(var i=0;i<counts[level];i++){
         this.build(level-1);
       }
       if(remainders[level]!=0){
@@ -90,7 +90,7 @@ function Rythm(m,k){
   };
 
   this.euclidSingle = function(m,k){
-    if(k==0){
+    if(k===0){
       return [m,0];
     }
     else{
