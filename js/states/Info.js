@@ -62,6 +62,7 @@ BasicApp.Info.prototype = {
 		var verts = rythm.polygon();
 		var vertPos = [];
 
+		//Calculate vertex positions
 		for(var i=0;i<verts.length;i++){
 			vertPos.push([center.x + this.radius*verts[i][0],center.y + this.radius*verts[i][1]]);
 		}
