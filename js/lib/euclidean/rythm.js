@@ -1,49 +1,22 @@
 function Rythm(m,k){
+  if(Array.isArray(m)){
+    this.parseBinary(m);
+  }
+
   this.n = m+k;
   this.m = m;
   this.k = k;
   this.rythm = [];
   this.string = [];
   this.index = 0;
+  this.euclideanString = false;
 
   this.bjork();
-
+  this.euclidean_string();
 }
 
 Rythm.prototype = {
   bjork: function(){
-    /*var largest = 0;
-    var smallest = 0;
-    var p1 = [];
-    var p2 = [];
-
-    if(this.k>this.m){
-      largest = this.k;
-      smallest = this.m;
-      p1.push(1);
-      p2.push(0);
-    }
-    else{
-      largest = this.m;
-      smallest  = this.k;
-      p1.push(0);
-      p2.push(1);
-    }
-
-    while(smallest!=0){
-      var E = this.euclidSingle(largest,smallest);
-      largest = E[0];
-      smallest = E[1];
-
-      var tmp = p1;
-      p1 = p1.concat(p2);
-      if(smallest>largest){
-        p2 = tmp;
-      }
-
-      console.log(b + " = " + a + " r");
-    }*/
-
     var pattern = [];
     var counts = [];
     var remainders = [];
@@ -68,7 +41,7 @@ Rythm.prototype = {
     return pattern;
   },
 
-  build: function(level, counts, pattern){
+  build: function(level, counts, pattern, remainders){
     if(level==-1){
       pattern.push(0);
     }
@@ -77,10 +50,10 @@ Rythm.prototype = {
     }
     else{
       for(var i=0;i<counts[level];i++){
-        this.build(level-1);
+        this.build(level-1,counts,pattern,remainders);
       }
       if(remainders[level]!=0){
-        this.build(level-2);
+        this.build(level-2,counts,pattern,remainders);
       }
     }
   },
@@ -149,6 +122,9 @@ Rythm.prototype = {
         arr.push(c);
         c = 1;
       }
+      if(i+1==this.rythm.length){
+        arr.push(c);
+      }
     }
 
     //Check if string exists
@@ -157,16 +133,20 @@ Rythm.prototype = {
       sum += arr[i];
     }
 
-    if(this.euclidean(sum,arr.length)==1){
-      return;
+    if(this.euclid(sum,arr.length)==1){
+      this.euclideanString = false;
     }
+    else{
+      this.euclideanString = true;
+    }
+
     this.string = arr;
     return arr;
   },
 
   //Rotates the string by x, this is described in Chapter 5 of the paper
   rho: function(x){
-      this.index += x;
+      this.index = (this.index+x)%this.rythm.length;
   },
 
   //Increments p_0 by 1 and decrements p_n-1 by 1, this is described in Chapter 5 of the paper
@@ -194,7 +174,7 @@ Rythm.prototype = {
 
   text: function(){
     var str = "[";
-    for(var i=0;i<this.string.length;i++){
+    for(var i=0;i<this.rythm.length;i++){
       str += this.rythm[i];
     }
 
@@ -210,5 +190,21 @@ Rythm.prototype = {
     var concat = rythm.concat(rythm);
 
     return this.rythm.every(function(val){return concat.indexOf(val) >= 0;});
+  },
+  //iterates over a binary sequence and sets m and k equal to the number of 0s and 1s
+  parseBinary: function(arr){
+    var m = 0;
+    var k = 0;
+
+    for(var i=0;i<arr.length;i++){
+      if(arr[i]==1){
+        k++;
+      }
+      else{
+        m++;
+      }
+    }
+    this.m = m;
+    this.k = k;
   }
 };
