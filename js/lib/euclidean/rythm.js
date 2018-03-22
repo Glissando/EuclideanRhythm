@@ -6,7 +6,12 @@ function Rythm(m,k){
   this.string = [];
   this.index = 0;
 
-  this.bjork = function(){
+  this.bjork();
+
+}
+
+Rythm.prototype = {
+  bjork: function(){
     /*var largest = 0;
     var smallest = 0;
     var p1 = [];
@@ -48,7 +53,7 @@ function Rythm(m,k){
 
     while(true){
       counts.push(Math.floor(divisor/remainders[level]));
-      remainders.push(divisor%reminaders[level]);
+      remainders.push(divisor%remainders[level]);
       divisor = remainders[level];
       level++;
       if(remainders[level]<=1)
@@ -61,9 +66,9 @@ function Rythm(m,k){
     pattern = pattern.slice(i).concat(pattern.slice(0,i));
     this.rythm = pattern;
     return pattern;
-  };
+  },
 
-  this.build = function(level, counts, pattern){
+  build: function(level, counts, pattern){
     if(level==-1){
       pattern.push(0);
     }
@@ -78,33 +83,33 @@ function Rythm(m,k){
         this.build(level-2);
       }
     }
-  };
+  },
   // m > k
-  this.euclid = function(m,k){
+  euclid: function(m,k){
     if(k===0){
       return m;
     }
     else{
       return this.euclid(k,m%k);
     }
-  };
+  },
 
-  this.euclidSingle = function(m,k){
+  euclidSingle: function(m,k){
     if(k===0){
       return [m,0];
     }
     else{
       return [k,m%k];
     }
-  }
+  },
 
-  this.remainder = function(m,k){
+  remainder: function(m,k){
     return k-(m%k);
-  };
+  },
 
   //Returns the rythm in musicology syntax e.g.
   //[10010010] = [x..x..x.]
-  this.music = function(){
+  music: function(){
     var str = "[";
 
     for(var i=0;i<this.rythm.length;i++){
@@ -117,10 +122,10 @@ function Rythm(m,k){
     }
 
     return str+"]";
-  };
+  },
 
   //Returns the coordinates for the rythms polygon representation as described in chapter 3
-  this.polygon = function(){
+  polygon: function(){
     var verts = [];
     var theta = Math.PI/2;
     for(var i=0;i<this.n;i++){
@@ -129,11 +134,11 @@ function Rythm(m,k){
     }
 
     return verts;
-  };
+  },
 
   //Creates the euclidean string form of the rythm e.g.
   //[10010010] = (3,3,2)
-  this.euclidean_string = function(){
+  euclidean_string: function(){
     var c = 1;
     var arr = [];
     for(var i=1;i<this.rythm.length;i++){
@@ -157,53 +162,53 @@ function Rythm(m,k){
     }
     this.string = arr;
     return arr;
-  };
+  },
 
   //Rotates the string by x, this is described in Chapter 5 of the paper
-  this.rho = function(x){
+  rho: function(x){
       this.index += x;
-  };
+  },
 
   //Increments p_0 by 1 and decrements p_n-1 by 1, this is described in Chapter 5 of the paper
-  this.tau = function(){
+  tau: function(){
     this.rythm[0] -= 1;
     this.rythm[this.n-1] += 1;
-  };
+  },
 
-  this.sum = function(){
+  sum: function(){
     var sum = 0;
     for(var i=0;i<this.string.length;i++){
       sum += this.string[i];
     }
-  };
+  },
 
   //Returns the string representation of the Euclidean String
-  this.interval = function(){
+  interval: function(){
       var str = "(";
       for(var i=0;i<this.string.length;i++){
         str += this.string[i];
       }
 
       return str+")";
-  };
+  },
 
-  this.text = function(){
+  text: function(){
     var str = "[";
     for(var i=0;i<this.string.length;i++){
       str += this.rythm[i];
     }
 
     return str+"]";
-  };
+  },
 
   //Checks if two rythms belong to the same, which means there acyclic permutations
   //e.g. [100110] = [101001]
-  this.isNecklace = function(rythm){
+  isNecklace: function(rythm){
     if(this.rythm.length!=rythm.length){
       return false;
     }
     var concat = rythm.concat(rythm);
 
     return this.rythm.every(function(val){return concat.indexOf(val) >= 0;});
-  };
-}
+  }
+};
