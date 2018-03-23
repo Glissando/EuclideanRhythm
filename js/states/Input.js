@@ -1,4 +1,4 @@
-BasicApp.Input = function(app){
+BasicApp.Input = function(){
 	this.binary = [];
 	this.binaryText = null;
 	this.maxLength = 16;
