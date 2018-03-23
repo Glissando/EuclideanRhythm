@@ -10,6 +10,7 @@ BasicApp.Info = function(app){
 	//Polygon data
 	this.radius = 50;	//Radius at which the polygon is drawn from
 	this.drawRadius = 10; //radius of the polygon's verticies
+	console.log(app.camera);
 	this.polyCenter = new Phaser.Point(app.camera.width/2, 100); //The polygon's center
 
 	this.back = null;
