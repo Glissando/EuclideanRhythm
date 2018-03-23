@@ -18,7 +18,7 @@ BasicApp.Input.prototype = {
 		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
 		this.binaryText = this.add.text(200,100, '', style);
 
-		this.generate = game.add.button(300,640, 'generate', this.generate, this);
+		this.generate = this.game.add.button(300,640, 'generate', this.generate, this);
 
 		this.addKeys();
 		this.addPointers();
