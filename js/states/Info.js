@@ -1,4 +1,4 @@
-BasicApp.Info = function(app){
+BasicApp.Info = function(){
 	//play settings
 	this.tempo = 120;
 	this.instrument = "piano";
