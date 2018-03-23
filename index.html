@@ -23,6 +23,7 @@
 			window.onload = function() {
 
 				app = new Phaser.Game(1280, 720, Phaser.AUTO, 'gameContainer');
+				console.log(app);
 				app.state.add('Boot', BasicApp.Boot);
 				app.state.add('Input', BasicApp.Input);
 				app.state.add('Info', BasicApp.Info);
