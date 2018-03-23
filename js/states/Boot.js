@@ -50,7 +50,7 @@ BasicApp.Boot.prototype = {
     preload: function () {
 			this.load.image("back", "images/Back.png");
 			this.load.image("generate", "images/Generate.png");
-			this.load.image("textfield", "images/Textfield.png");
+			this.load.image("textfield", "images/Input.png");
 			this.load.image("play", "images/Play.png");
     },
 
