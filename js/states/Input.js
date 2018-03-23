@@ -57,22 +57,22 @@ BasicApp.Input.prototype = {
 		this.input.keyboard.reset();
 
 		this.zero = this.input.keyboard.addKey(Phaser.Keyboard.ZERO);
-		this.zero.onDown.add(this.zero, this, 0, this.binaryText);
+		this.zero.onDown.add(this.zeroPress, this, 0, this.binaryText);
 
 		this.zeroNumpad = this.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_0);
-		this.zeroNumpad.onDown.add(this.zero, this, 0, this.binaryText);
+		this.zeroNumpad.onDown.add(this.zeroPress, this, 0, this.binaryText);
 
 		this.one = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
-		this.one.onDown.add(this.one, this, 0, this.binaryText);
+		this.one.onDown.add(this.onePress, this, 0, this.binaryText);
 
 		this.oneNumpad = this.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_1);
-		this.oneNumpad.onDown.add(this.one, this, 0, this.binaryText);
+		this.oneNumpad.onDown.add(this.onePress, this, 0, this.binaryText);
 
 		this.del = this.input.keyboard.addKey(Phaser.Keyboard.DELETE);
 		this.del.onDown.add(this.delete, this);
 	},
 
-	one: function(){
+	onePress: function(){
 		if(this.length < this.maxLength){
 			this.binaryText.setText(this.binaryText.text+"1");
 			this.binary.push(1);
@@ -80,7 +80,7 @@ BasicApp.Input.prototype = {
 		}
 	},
 
-	zero: function(){
+	zeroPress: function(){
 		if(this.length < this.maxLength){
 			this.binaryText.setText(this.binaryText.text+"0");
 			this.binary.push(0);
