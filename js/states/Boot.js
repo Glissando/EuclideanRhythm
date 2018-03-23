@@ -48,10 +48,10 @@ BasicApp.Boot.prototype = {
     },
 
     preload: function () {
-			this.load.image("back", "images/back.jpg");
-			this.load.image("generate", "images/generate.jpg");
-			this.load.image("textfield", "images/textfield.jpg");
-			this.load.image("play", "images/play.jpg");
+			this.load.image("back", "images/back.png");
+			this.load.image("generate", "images/generate.png");
+			this.load.image("textfield", "images/textfield.png");
+			this.load.image("play", "images/play.png");
     },
 
     create: function () {
