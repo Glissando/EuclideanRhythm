@@ -46,10 +46,10 @@ BasicApp.Input.prototype = {
 	},
 
 	addPointers: function(){
-		this.input.mousePointer.rightButton.onDown.add(this.rightClick, this);
+		//this.input.mousePointer.rightButton.onDown.add(this.rightClick, this);
 
-		this.input.mousePointer.leftButton.onDown.add(this.leftClick, this, 10);
-		this.input.mousePointer.leftButton.onDown.add(this.draw, this, 0, this.houses, this.sites);
+		//this.input.mousePointer.leftButton.onDown.add(this.leftClick, this, 10);
+		//this.input.mousePointer.leftButton.onDown.add(this.draw, this, 0, this.houses, this.sites);
 	},
 
 	addKeys: function(){
