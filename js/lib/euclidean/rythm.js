@@ -34,7 +34,7 @@ Rythm.prototype = {
     }
 
     counts.push(divisor);
-    this.build(level,counts,pattern);
+    this.build(level,counts,pattern,remainders);
     var i = pattern.indexOf(1);
     pattern = pattern.slice(i).concat(pattern.slice(0,i));
     this.rythm = pattern;
