@@ -19,3 +19,10 @@ Audio playback of rhythms is planned.
 ![alt text](https://github.com/Glissando/EuclideanRythm/blob/master/raw/Rhythm.jpg "Information on a Rhythm")
 
 ![alt text](https://github.com/Glissando/EuclideanRythm/blob/master/raw/Sequence.jpg "Inputting a Sequence")
+
+
+### Further Reading
+
+[Geometry of Rhythm](http://cgm.cs.mcgill.ca/~godfried/publications/geometry-of-rhythm.pdf)
+
+[Mathematical Music theory](https://www.math.wustl.edu/~wright/Math109/00Book.pdf)
