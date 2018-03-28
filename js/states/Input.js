@@ -32,6 +32,9 @@ BasicApp.Input.prototype = {
 	},
 
 	shutdown: function(){
+		this.generateButton.destroy();
+		this.generateButton = null;
+
 		this.length = 0;
 		this.binaryText.setText('');
 		this.binary = [];
