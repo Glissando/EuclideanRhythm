@@ -10,7 +10,7 @@ Audio playback of rhythms is planned.
 
 ### Try it out!
 
-[Run the project](euclideanrhythm.000webhostapp.com)
+[Run the project](https://euclideanrhythm.000webhostapp.com/)
 
 [Dev Build](https://rawgit.com/Glissando/EuclideanRythm/master/index.html)
 
