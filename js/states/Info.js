@@ -10,7 +10,7 @@ BasicApp.Info = function(){
 	//Polygon data
 	this.radius = 50;	//Radius at which the polygon is drawn from
 	this.drawRadius = 10; //radius of the polygon's verticies
-	console.log(app);
+
 	this.polyCenter = new Phaser.Point(app.width/2, 100); //The polygon's center
 
 	this.backButton = null;
@@ -18,17 +18,20 @@ BasicApp.Info = function(){
 
 BasicApp.Info.prototype = {
 
-	create: function(rythm){
-		this.rythm = rythm;
+	init: function(rythm){
+			this.rythm = rythm;
+	},
+
+	create: function(){
 
 		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
-		this.interval = this.add.text(200,400, rythm.interval(), style);
-		this.binary = this.add.text(200,600, rythm.text(), style);
-		this.music = this.add.text(700,600, rythm.music(), style);
+		this.interval = this.add.text(200,400, this.rythm.interval(), style);
+		this.binary = this.add.text(200,600, this.rythm.text(), style);
+		this.music = this.add.text(700,600, this.rythm.music(), style);
 
 		this.backButton = game.add.button(20,600, 'back', this.back, this);
 
-		this.drawPolygon(rythm, this.center);
+		this.drawPolygon(this.rythm, this.center);
 		this.addKeys();
 		this.addPointers();
 	},
