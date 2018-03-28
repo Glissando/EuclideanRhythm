@@ -3,7 +3,7 @@ BasicApp.Input = function(){
 	this.binaryText = null;
 	this.maxLength = 16;
 	this.length = 0;
-	this.generate = null;
+	this.generateButton = null;
 	//keys
 	this.one = null;
 	this.oneNumpad = null;
@@ -15,10 +15,10 @@ BasicApp.Input = function(){
 BasicApp.Input.prototype = {
 
 	create: function(){
-		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
+		var style = { font: '64pt Arial', fill: 'white', align: 'left', wordWrap: false };
 		this.binaryText = this.add.text(200,100, '', style);
 
-		this.generate = this.game.add.button(300,640, 'generate', this.generate, this);
+		this.generateButton = this.game.add.button(300,500, 'generate', this.generate, this);
 
 		this.addKeys();
 		this.addPointers();
@@ -89,7 +89,7 @@ BasicApp.Input.prototype = {
 	},
 
 	delete: function(){
-		if(length>0){
+		if(this.length>0){
 			this.binaryText.setText(this.binaryText.text.substring(0,this.binaryText.text.length-1));
 			this.binary.pop();
 			this.length--;

@@ -13,7 +13,7 @@ BasicApp.Info = function(){
 	console.log(app);
 	this.polyCenter = new Phaser.Point(app.width/2, 100); //The polygon's center
 
-	this.back = null;
+	this.backButton = null;
 };
 
 BasicApp.Info.prototype = {
@@ -26,7 +26,7 @@ BasicApp.Info.prototype = {
 		this.binary = this.add.text(200,600, rythm.text(), style);
 		this.music = this.add.text(700,600, rythm.music(), style);
 
-		this.back = game.add.button(20,600, 'back', this.back, this);
+		this.backButton = game.add.button(20,600, 'back', this.back, this);
 
 		this.drawPolygon(rythm, this.center);
 		this.addKeys();
@@ -44,8 +44,8 @@ BasicApp.Info.prototype = {
 	shutdown: function(){
 		graphics.clear();
 
-		this.back.destroy();
-		this.back = null;
+		this.backButton.destroy();
+		this.backButton = null;
 
 		this.interval.destroy();
 		this.interval = null;
