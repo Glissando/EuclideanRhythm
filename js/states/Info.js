@@ -29,9 +29,9 @@ BasicApp.Info.prototype = {
 		this.binary = this.add.text(200,600, this.rythm.text(), style);
 		this.music = this.add.text(700,600, this.rythm.music(), style);
 
-		this.backButton = game.add.button(20,600, 'back', this.back, this);
+		this.backButton = this.game.add.button(20,600, 'back', this.back, this);
 
-		this.drawPolygon(this.rythm, this.center);
+		this.drawPolygon(this.rythm, this.polyCenter);
 		this.addKeys();
 		this.addPointers();
 	},
