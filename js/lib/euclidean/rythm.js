@@ -12,6 +12,10 @@ function Rythm(m,k){
   this.index = 0;
   this.euclideanString = false;
 
+  if(this.k===0){
+    console.log("You must specify at least 1 pulse");
+    return;
+  }
   this.bjork();
   this.euclidean_string();
 }
