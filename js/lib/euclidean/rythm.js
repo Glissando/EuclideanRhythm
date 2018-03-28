@@ -2,10 +2,11 @@ function Rythm(m,k){
   if(Array.isArray(m)){
     this.parseBinary(m);
   }
-
-  this.n = m+k;
-  this.m = m;
-  this.k = k;
+  else{
+    this.m = m;
+    this.k = k;
+  }
+  this.n = this.m+this.k;
   this.rythm = [];
   this.string = [];
   this.index = 0;
