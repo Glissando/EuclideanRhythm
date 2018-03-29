@@ -8,11 +8,10 @@ BasicApp.Info = function(){
 	this.binary = null; // Text object for binary sequence notation e.g. [10010010]
 	this.music = null; //Text object for musicology notation e.g. [x..x..x.]
 	//Polygon data
-	this.radius = 50;	//Radius at which the polygon is drawn from
-	this.drawRadius = 10; //radius of the polygon's verticies
+	this.radius = 100;	//Radius at which the polygon is drawn from
+	this.drawRadius = 15; //radius of the polygon's verticies
 
-	this.polyCenter = new Phaser.Point(app.width/2, 100); //The polygon's center
-
+	this.polyCenter = new Phaser.Point(app.width/2, 150); //The polygon's center
 	this.backButton = null;
 };
 
@@ -23,13 +22,18 @@ BasicApp.Info.prototype = {
 	},
 
 	create: function(){
+		this.polyCenter = new Phaser.Point(app.width/2, 150);
 
 		var style = { font: '32pt Arial', fill: 'white', align: 'left', wordWrap: false };
 		this.interval = this.add.text(200,400, this.rythm.interval(), style);
 		this.binary = this.add.text(200,600, this.rythm.text(), style);
 		this.music = this.add.text(700,600, this.rythm.music(), style);
 
-		this.backButton = this.game.add.button(20,600, 'back', this.back, this);
+		this.backButton = this.game.add.button(20,540, 'back', this.back, this);
+
+		graphics.clear();
+		graphics.width = this.game.width;
+		graphics.height = this.game.height;
 
 		this.drawPolygon(this.rythm, this.polyCenter);
 		this.addKeys();
@@ -37,8 +41,8 @@ BasicApp.Info.prototype = {
 	},
 
 	update: function(){
-			graphics.width = this.game.width;
-			graphics.height = this.game.height;
+			//graphics.width = this.game.width;
+			//graphics.height = this.game.height;
 	},
 
 	render: function(){
@@ -66,9 +70,21 @@ BasicApp.Info.prototype = {
 		var verts = rythm.polygon();
 		var vertPos = [];
 
+		graphics.lineStyle(2, 0xffffff, 1);
 		//Calculate vertex positions
 		for(var i=0;i<verts.length;i++){
 			vertPos.push([center.x + this.radius*verts[i][0],center.y + this.radius*verts[i][1]]);
+			console.log("x: " + vertPos[i][0] + " y: " + vertPos[i][1]);
+		}
+
+
+		//Draw edges
+		for(var i=0;i<verts.length;i++){
+			graphics.beginFill(0xffffff);
+			graphics.lineStyle(2, 0xffffff);
+			graphics.moveTo(vertPos[i][0],vertPos[i][1]);
+			graphics.lineTo(vertPos[(i+1)%verts.length][0],vertPos[(i+1)%verts.length][1]);
+			graphics.endFill();
 		}
 
 		//Draw verticies
@@ -77,20 +93,11 @@ BasicApp.Info.prototype = {
 			graphics.drawCircle(vertPos[i][0],vertPos[i][1],this.drawRadius);
 			graphics.endFill();
 			//Draw inner verticies for beats
-			if(this.rythm[i]==1){
+			if(this.rythm.rythm[i]==1){
 				graphics.beginFill(0x000000);
-				graphics.drawCircle(vertPos[i][0],vertPos[i][1],this.drawRadius/2);
+				graphics.drawCircle(vertPos[i][0],vertPos[i][1],this.drawRadius/1.25);
 				graphics.endFill();
 			}
-		}
-
-  	//Draw edges
-		for(var i=0;i<verts.length;i++){
-			graphics.beginFill(0xffffff);
-			graphics.lineStyle(2, 0xffffff);
-			graphics.moveTo(vertPos[i][0],vertPos[i][1]);
-			graphics.lineTo(vertPos[(i+1)%verts.length][0],vertPos[(i+1)%verts.length][1]);
-			graphics.endFill();
 		}
 	},
 

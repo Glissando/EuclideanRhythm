@@ -1,9 +1,10 @@
 BasicApp.Input = function(){
 	this.binary = [];
 	this.binaryText = null;
-	this.maxLength = 16;
+	this.maxLength = 18;
 	this.length = 0;
 	this.generateButton = null;
+	this.inputSprite = null;
 	//keys
 	this.one = null;
 	this.oneNumpad = null;
@@ -15,11 +16,11 @@ BasicApp.Input = function(){
 BasicApp.Input.prototype = {
 
 	create: function(){
-		var style = { font: '64pt Arial', fill: 'white', align: 'left', wordWrap: false };
+		var style = { font: '64pt Arial', fill: 'white', align: 'center', wordWrap: false };
 		this.binaryText = this.add.text(200,100, '', style);
 
 		this.generateButton = this.game.add.button(300,500, 'generate', this.generate, this);
-
+		this.inputSprite = this.game.add.sprite(190,90,'textfield');
 		this.addKeys();
 		this.addPointers();
 	},
@@ -34,6 +35,9 @@ BasicApp.Input.prototype = {
 	shutdown: function(){
 		this.generateButton.destroy();
 		this.generateButton = null;
+
+		this.inputSprite.destroy();
+		this.inputSprite = null;
 
 		this.length = 0;
 		this.binaryText.setText('');
