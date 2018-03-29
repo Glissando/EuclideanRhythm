@@ -105,10 +105,10 @@ Rythm.prototype = {
   //Returns the coordinates for the rythms polygon representation as described in chapter 3
   polygon: function(){
     var verts = [];
-    var theta = Math.PI/2;
+    var theta = -Math.PI/2;
     for(var i=0;i<this.n;i++){
-      verts.push([Math.sin(theta),Math.cos(theta)]);
-      theta -= (2*Math.PI)/this.n;
+      verts.push([Math.cos(theta),Math.sin(theta)]);
+      theta += (2*Math.PI)/this.n;
     }
 
     return verts;
@@ -186,7 +186,7 @@ Rythm.prototype = {
     return str+"]";
   },
 
-  //Checks if two rythms belong to the same, which means there acyclic permutations
+  //Checks if two rythms belong to the same necklace, which means there acyclic permutations
   //e.g. [100110] = [101001]
   isNecklace: function(rythm){
     if(this.rythm.length!=rythm.length){
