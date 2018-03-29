@@ -20,7 +20,7 @@ BasicApp.Input.prototype = {
 		this.binaryText = this.add.text(200,100, '', style);
 
 		this.generateButton = this.game.add.button(300,500, 'generate', this.generate, this);
-		this.inputSprite = this.game.add.sprite(190,90,'textfield');
+		this.inputSprite = this.game.add.sprite(170,75,'textfield');
 		this.addKeys();
 		this.addPointers();
 	},
