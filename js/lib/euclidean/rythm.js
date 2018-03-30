@@ -14,6 +14,8 @@ function Rythm(m,k){
 
   if(this.k===0){
     console.log("You must specify at least 1 pulse");
+    this.m = 0;
+    this.n = 0;
     return;
   }
   this.bjork();
