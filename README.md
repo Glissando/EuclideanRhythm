@@ -10,9 +10,9 @@ Audio playback of rhythms is planned.
 
 ### Instructions
 
-..* 1 - Enters the 1 digit
-..* 0 - Enters the 0 digit
-..* Delete - Removes the last digit
+* 1 - Enters the 1 digit
+* 0 - Enters the 0 digit
+* Delete - Removes the last digit
 
 ### Try it out!
 
