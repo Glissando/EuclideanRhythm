@@ -8,6 +8,12 @@ The raw folder contains assets not used in the project, and exist primarily for 
 
 Audio playback of rhythms is planned.
 
+### Instructions
+
+..* 1 - Enters the 1 digit
+..* 0 - Enters the 0 digit
+..* Delete - Removes the last digit
+
 ### Try it out!
 
 [Run the project](https://euclideanrhythm.000webhostapp.com/)
