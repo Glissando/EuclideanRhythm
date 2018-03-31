@@ -33,3 +33,4 @@ Audio playback of rhythms is planned.
 
 [Mathematical Music theory](https://www.math.wustl.edu/~wright/Math109/00Book.pdf)
 
+[Speech outline](https://docs.google.com/document/d/1EOpM00WX4aKhFkPMN3FLBIgXymSNny3SWBP7LgxuryQ/edit?usp=sharing)
