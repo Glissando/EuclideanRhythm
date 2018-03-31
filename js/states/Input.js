@@ -16,8 +16,9 @@ BasicApp.Input = function(){
 BasicApp.Input.prototype = {
 
 	create: function(){
-		var style = { font: '64pt Arial', fill: 'white', align: 'center', wordWrap: false };
+		var style = { font: '64pt Arial', fill: 'white', align: 'center', boundsAlignH: 'center', boundsAlignV: 'middle', wordWrap: false };
 		this.binaryText = this.add.text(200,100, '', style);
+		this.binaryText.setTextBounds(0,0, 900, 100);
 
 		this.generateButton = this.game.add.button(300,500, 'generate', this.generate, this);
 		this.inputSprite = this.game.add.sprite(170,75,'textfield');
