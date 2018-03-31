@@ -13,6 +13,7 @@ Audio playback of rhythms is planned.
 * 1 - Enters the 1 digit
 * 0 - Enters the 0 digit
 * Delete - Removes the last digit
+* Enter - Generate the Rhythm
 
 ### Try it out!
 

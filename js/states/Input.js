@@ -11,6 +11,7 @@ BasicApp.Input = function(){
 	this.zero = null;
 	this.zeroNumpad = null;
 	this.del = null;
+	this.ent = null;
 };
 
 BasicApp.Input.prototype = {
@@ -78,6 +79,9 @@ BasicApp.Input.prototype = {
 
 		this.del = this.input.keyboard.addKey(Phaser.Keyboard.DELETE);
 		this.del.onDown.add(this.delete, this);
+
+		this.ent = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+		this.ent.onDown.add(this.generate, this);
 	},
 
 	onePress: function(){
