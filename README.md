@@ -32,3 +32,4 @@ Audio playback of rhythms is planned.
 [Geometry of Rhythm](http://cgm.cs.mcgill.ca/~godfried/publications/geometry-of-rhythm.pdf)
 
 [Mathematical Music theory](https://www.math.wustl.edu/~wright/Math109/00Book.pdf)
+
