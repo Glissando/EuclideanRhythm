@@ -8,6 +8,10 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="icon" href="images/icon.png" />
 		<script src="js/lib/phaser.min.js"></script>
+		<script src="js/lib/shim/Base64.js" type="text/javascript"></script>
+		<script src="js/lib/shim/Base64binary.js" type="text/javascript"></script>
+		<script src="js/lib/shim/WebAudioAPI.js" type="text/javascript"></script>
+		<script src="js/lib/MIDI.min.js"></script>
 		<script src="js/lib/euclidean/rythm.js"></script>
 		<script src="js/states/Boot.js"></script>
 		<script src="js/states/Info.js"></script>
@@ -22,9 +26,24 @@
 			var app;
 			var graphics;
 			window.onload = function() {
-
+				MIDI.loadPlugin({
+		      soundfontUrl: "./soundfont/",
+		      instrument: "acoustic_grand_piano",
+					onprogress: function(state, progress) {
+						console.log(state, progress);
+					},
+		      callback: function() {
+		        var delay = 0; // play one note every quarter second
+		        var note = 50; // the MIDI note
+		        var velocity = 127; // how hard the note hits
+		        // play the note
+			      MIDI.setVolume(0, 127);
+			      MIDI.noteOn(0, note, velocity, delay);
+			      MIDI.noteOff(0, note, delay + 0.75);
+						console.log("note played");
+	    		}
+				});
 				app = new Phaser.Game(1280, 720, Phaser.AUTO, 'gameContainer');
-				console.log(app);
 				app.state.add('Boot', BasicApp.Boot);
 				app.state.add('Input', BasicApp.Input);
 				app.state.add('Info', BasicApp.Info);
