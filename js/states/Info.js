@@ -13,6 +13,11 @@ BasicApp.Info = function(){
 
 	this.polyCenter = new Phaser.Point(app.width/2, 150); //The polygon's center
 	this.backButton = null;
+	this.playButton = null;
+
+	this.index = 0;
+	this.isPlaying = false;
+	this.playEvent = null;
 };
 
 BasicApp.Info.prototype = {
@@ -30,6 +35,7 @@ BasicApp.Info.prototype = {
 		this.music = this.add.text(700,600, this.rythm.music(), style);
 
 		this.backButton = this.game.add.button(20,540, 'back', this.back, this);
+		this.playButton = this.game.add.button((app.width/2)-app.cache.getImage('play').width/2, 300, 'play', this.play, this);
 
 		graphics.clear();
 		graphics.width = this.game.width;
@@ -50,9 +56,13 @@ BasicApp.Info.prototype = {
 
 	shutdown: function(){
 		graphics.clear();
+		this.stop();
 
 		this.backButton.destroy();
 		this.backButton = null;
+
+		this.playButton.destroy();
+		this.playButton = null;
 
 		this.interval.destroy();
 		this.interval = null;
@@ -118,5 +128,39 @@ BasicApp.Info.prototype = {
 
 	back: function(){
 		this.state.start("Input", false);
+	},
+
+	play: function(){
+		if(!this.isPlaying){
+			this.isPlaying = true;
+			this.playPulse();
+		}
+	},
+
+	stop: function(){
+			if(this.isPlaying){
+				app.time.events.remove(this.playEvent);
+				this.playEvent = null;
+				this.isPlaying = false;
+			}
+	},
+
+	playPulse(){
+		console.log("Pulse " + this.index + " played!");
+		MIDI.noteOn(0, 50, 127, 0);
+		MIDI.noteOff(0, 50, 0.4);
+
+		if(this.index < this.rythm.string.length-1){
+			this.playEvent = app.time.events.add(Phaser.Timer.SECOND*(60/this.tempo)*this.rythm.string[this.index], this.playPulse, this);
+			console.log(this.index);
+			console.log("play next pulse!");
+		}
+		else{
+			this.index = 0;
+			this.isPlaying = false;
+			console.log("done!");
+			return;
+		}
+		++this.index;
 	}
 };
