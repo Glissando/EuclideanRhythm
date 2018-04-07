@@ -1,12 +1,10 @@
 ### Introduction
 
 A project written for a demonstration of Euclidean Rhythms, a topic introduced by Godfried Toussaint in 2005, inspired by his paper
-[The Euclidean Algorithm generates Traditional Music Rhythms](http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf)
+[The Euclidean Algorithm generates Traditional Music Rhythms](http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf).
 Information on the Bjorklund algorithm's implementation details can be found [here](https://ics-web.sns.ornl.gov/timing/Rep-Rate%20Tech%20Note.pdf).
 
 The raw folder contains assets not used in the project, and exist primarily for example/demonstration purposes.
-
-Audio playback of rhythms is planned.
 
 ### Instructions
 
