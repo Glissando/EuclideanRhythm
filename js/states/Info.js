@@ -140,11 +140,10 @@ BasicApp.Info.prototype = {
 		if(!this.isPlaying && this.rythm.n != 0){
 			this.isPlaying = true;
 			this.playPulse();
-			//this.playButton.loadTexture(app.cache.getImage('stop'));
+			this.playButton.loadTexture('stop');
 		}
 		else if(this.isPlaying){
 			this.stop();
-			//this.playButton.loadTexture(app.cache.getImage('play'));
 		}
 	},
 
@@ -156,8 +155,10 @@ BasicApp.Info.prototype = {
 				this.pulseAnim.manager.remove(this.pulseAnim);
 				this.pulseAnim = null;
 				this.animIndex = 0;
+				this.drawRadiusAnim = 0;
 				graphics.clear();
-				this.drawPolygon();
+				this.drawPolygon(this.rythm, this.polyCenter);
+				this.playButton.loadTexture('play');
 			}
 	},
 
@@ -167,21 +168,25 @@ BasicApp.Info.prototype = {
 		MIDI.noteOff(0, 50, 0.4);
 		var t = Phaser.Timer.SECOND*(60/this.tempo);
 
-		this.pulseAnim = app.add.tween(this).to({drawRadiusAnim: this.drawRadius*2}, t/2, Phaser.Easing.Bounce.In, true, 0, 0, false);
-		this.pulseAnim.onComplete.add(function(){
-			this.animIndex = (this.animIndex+this.rythm.string[this.index-1]) % this.rythm.n;
-			this.drawRadiusAnim = this.drawRadius;
-		}, this);
+
 
 		if(this.index < this.rythm.string.length-1){
 
 			this.playEvent = app.time.events.add(t*this.rythm.string[this.index], this.playPulse, this);
-
+			this.pulseAnim = app.add.tween(this).to({drawRadiusAnim: this.drawRadius*2}, t/2, Phaser.Easing.Bounce.In, true, 0, 0, false);
+			this.pulseAnim.onComplete.add(function(){
+				this.animIndex = (this.animIndex+this.rythm.string[this.index-1]) % this.rythm.n;
+				this.drawRadiusAnim = this.drawRadius;
+			}, this);
 			console.log("play next pulse!");
 		}
 		else{
 			this.index = 0;
-			this.stop();
+			this.pulseAnim = app.add.tween(this).to({drawRadiusAnim: this.drawRadius*2}, t/2, Phaser.Easing.Bounce.In, true, 0, 0, false);
+			this.pulseAnim.onComplete.add(function(){
+				this.animIndex = (this.animIndex+this.rythm.string[this.index-1]) % this.rythm.n;
+				this.stop();
+			}, this);
 			console.log("done!");
 			return;
 		}
