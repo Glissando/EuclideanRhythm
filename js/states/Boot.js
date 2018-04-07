@@ -52,6 +52,7 @@ BasicApp.Boot.prototype = {
 			this.load.image("generate", "images/Generate.png");
 			this.load.image("textfield", "images/Input.png");
 			this.load.image("play", "images/Play.png");
+      this.load.image("stop", "images/Stop.png");
     },
 
     create: function () {
