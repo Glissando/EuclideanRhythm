@@ -152,6 +152,7 @@ BasicApp.Info.prototype = {
 				app.time.events.remove(this.playEvent);
 				this.playEvent = null;
 				this.isPlaying = false;
+				this.index = 0;
 				this.pulseAnim.manager.remove(this.pulseAnim);
 				this.pulseAnim = null;
 				this.animIndex = 0;
@@ -163,22 +164,17 @@ BasicApp.Info.prototype = {
 	},
 
 	playPulse(){
-		console.log("Pulse " + this.index + " played!");
 		MIDI.noteOn(0, 50, 127, 0);
 		MIDI.noteOff(0, 50, 0.4);
 		var t = Phaser.Timer.SECOND*(60/this.tempo);
 
-
-
 		if(this.index < this.rythm.string.length-1){
-
 			this.playEvent = app.time.events.add(t*this.rythm.string[this.index], this.playPulse, this);
 			this.pulseAnim = app.add.tween(this).to({drawRadiusAnim: this.drawRadius*2}, t/2, Phaser.Easing.Bounce.In, true, 0, 0, false);
 			this.pulseAnim.onComplete.add(function(){
 				this.animIndex = (this.animIndex+this.rythm.string[this.index-1]) % this.rythm.n;
 				this.drawRadiusAnim = this.drawRadius;
 			}, this);
-			console.log("play next pulse!");
 		}
 		else{
 			this.index = 0;
@@ -187,7 +183,6 @@ BasicApp.Info.prototype = {
 				this.animIndex = (this.animIndex+this.rythm.string[this.index-1]) % this.rythm.n;
 				this.stop();
 			}, this);
-			console.log("done!");
 			return;
 		}
 		++this.index;
