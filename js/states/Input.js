@@ -22,7 +22,7 @@ BasicApp.Input.prototype = {
 		this.binaryText.setTextBounds(0,0, 900, 100);
 
 		this.generateButton = this.game.add.button((app.width/2)-app.cache.getImage('generate').width/2,500, 'generate', this.generate, this);
-		this.inputSprite = this.game.add.sprite(170,75,'textfield');
+		this.inputSprite = this.game.add.sprite((app.width/2)-app.cache.getImage('textfield').width/2,75,'textfield');
 		this.addKeys();
 		this.addPointers();
 	},
