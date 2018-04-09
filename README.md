@@ -8,10 +8,12 @@ The raw folder contains assets not used in the project, and exist primarily for 
 
 ### Instructions
 
-* 1 - Enters the 1 digit
-* 0 - Enters the 0 digit
-* Delete - Removes the last digit
-* Enter - Generate the Rhythm
+Keys | Action
+---- | ------
+1 | Enters the 1 digit
+2 | Enters the 0 digit
+Delete | Removes the last digit
+Enter | Generate the Rhythm
 
 ### Try it out!
 
