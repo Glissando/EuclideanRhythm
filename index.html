@@ -30,7 +30,6 @@
 		      soundfontUrl: "./soundfont/",
 		      instrument: "acoustic_grand_piano",
 					onprogress: function(state, progress) {
-						console.log(state, progress);
 					},
 		      callback: function() {
 		        var delay = 0; // play one note every quarter second
@@ -40,7 +39,6 @@
 			      MIDI.setVolume(0, 127);
 			      MIDI.noteOn(0, note, velocity, delay);
 			      MIDI.noteOff(0, note, delay + 0.75);
-						console.log("note played");
 	    		}
 				});
 				app = new Phaser.Game(1280, 720, Phaser.AUTO, 'gameContainer');
