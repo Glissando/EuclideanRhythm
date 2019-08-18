@@ -17,7 +17,7 @@ Enter | Generate the Rhythm
 
 ### Try it out!
 
-[Run the project](https://euclideanrhythm.000webhostapp.com/)
+[Run the project](https://github.com/Glissando/EuclideanRhythm/blob/master/index.html)
 
 [Dev Build](https://rawgit.com/Glissando/EuclideanRythm/master/index.html)
 
